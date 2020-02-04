@@ -11,4 +11,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+.carous-page {
+  flex-shrink: 1;
+  background-color: #fff;
+}
 </style>

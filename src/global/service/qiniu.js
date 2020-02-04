@@ -10,18 +10,18 @@ const qiniuService = {
       this.getToken().then(qiniuGet => {
         const key = Date.now() + "_" + file.name;
         // 获取 TOKEN
-        let token = qiniuGet.token;
-        let domainName = qiniuGet.domain;
-        let formData = new FormData();
+        const token = qiniuGet.token;
+        const domainName = qiniuGet.domain;
+        const formData = new FormData();
         formData.append("file", file); // 文件
         formData.append("key", key); // 在七牛存储中的路径
         formData.append("token", token); // token
         axios
-          .post(api.QINIU_API, formData, {
+          .post(api.qiniu_api, formData, {
             headers: { "Content-Type": "multiple/form-data" }
           })
           .then(res => {
-            let imageUrl = domainName + "/" + res.key;
+            const imageUrl = domainName + "/" + res.key;
             resolve(imageUrl);
           });
       });

@@ -42,6 +42,12 @@ export default {
   .page-body {
     flex: 1;
     padding: 20px;
+    display: flex;
+    .carous-page {
+      flex: 1;
+      padding: 10px;
+      background-color: #fff;
+    }
   }
 }
 </style>

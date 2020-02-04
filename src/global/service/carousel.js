@@ -2,16 +2,16 @@ import axios from "@/global/request/axios.js";
 import api from "@/global/request/api.js";
 
 const carouselService = {
-  all: function() {
+  index: function() {
     return axios.get(api.carousel);
   },
-  add: function(params) {
+  store: function(params) {
     return axios.post(api.carousel, params);
   },
-  enit: function(id, params) {
+  update: function(id, params) {
     return axios.put(api.carouselId(id), params);
   },
-  del: function(id) {
+  destroy: function(id) {
     return axios.delete(api.carouselId(id));
   }
 };

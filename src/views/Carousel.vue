@@ -83,7 +83,7 @@
           <el-form-item label="图片" prop="image_url">
             <el-upload
               action=""
-              class="avatar-uploader"
+              class="image-uploader"
               :show-file-list="false"
               :before-upload="getImage"
               :http-request="setImage"
@@ -91,9 +91,9 @@
               <img
                 v-if="showCarouseData.image_url"
                 :src="showCarouseData.image_url"
-                class="avatar"
+                class="image"
               />
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+              <i v-else class="el-icon-plus image-uploader-icon"></i>
             </el-upload>
           </el-form-item>
           <el-form-item label="图片排序" prop="sort">
@@ -242,7 +242,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.avatar-uploader-icon {
+.image-uploader-icon {
   font-size: 28px;
   color: #8c939d;
   width: 178px;
@@ -251,7 +251,7 @@ export default {
   text-align: center;
   display: block;
 }
-.avatar {
+.image {
   width: 178px;
   height: 178px;
   display: block;

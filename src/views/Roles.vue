@@ -77,10 +77,10 @@ export default {
     };
   },
   created() {
-    this.getDataArr();
+    this.getData();
   },
   methods: {
-    getDataArr() {
+    getData() {
       serviceRole.index().then(res => {
         this.roleArr = res.roles;
       });
@@ -97,7 +97,7 @@ export default {
         if (valid) {
           let data = this.rolesData;
           serviceRole.store(data).then(() => {
-            this.getDataArr();
+            this.getData();
             this.delData();
           });
         }
@@ -107,7 +107,7 @@ export default {
       this.$confirm("确认删除吗？")
         .then(() => {
           serviceRole.destroy(row.id).then(() => {
-            this.getDataArr();
+            this.getData();
           });
         })
         .catch(() => {});

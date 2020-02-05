@@ -7,12 +7,13 @@
       <el-table-column prop="id" label="ID" width="60"> </el-table-column>
       <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
       <el-table-column prop="description" label="描述"> </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" fixed="right" width="180">
         <template slot-scope="scope">
           <router-link :to="'/roles/index/' + scope.row.id">
             <el-button type="text">编辑</el-button>
           </router-link>
-          |<el-button
+          <el-divider direction="vertical"></el-divider>
+          <el-button
             type="text"
             style="color:#f56c6c;"
             @click="handleDelete(scope.$index, scope.row)"
@@ -103,9 +104,13 @@ export default {
       });
     },
     handleDelete(index, row) {
-      serviceRole.destroy(row.id).then(() => {
-        this.getDataArr();
-      });
+      this.$confirm("确认删除吗？")
+        .then(() => {
+          serviceRole.destroy(row.id).then(() => {
+            this.getDataArr();
+          });
+        })
+        .catch(() => {});
     }
   }
 };

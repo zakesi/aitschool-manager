@@ -57,8 +57,8 @@
             <template slot-scope="scope">
               <el-button type="text" @click="handleEdit(scope.row)"
                 >编辑</el-button
-              >
-              |<el-button
+              ><el-divider direction="vertical"></el-divider>
+              <el-button
                 type="text"
                 style="color:#f56c6c;"
                 @click="handleDelete(scope.$index, scope.row)"
@@ -234,9 +234,13 @@ export default {
       });
     },
     handleDelete(index, row) {
-      carouselAxios.destroy(row.id).then(() => {
-        this.getData();
-      });
+      this.$confirm("确认删除吗？")
+        .then(() => {
+          carouselAxios.destroy(row.id).then(() => {
+            this.getData();
+          });
+        })
+        .catch(() => {});
     }
   }
 };

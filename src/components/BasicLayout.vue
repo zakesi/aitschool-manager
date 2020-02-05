@@ -43,7 +43,7 @@ export default {
     flex: 1;
     padding: 20px;
     display: flex;
-    .carous-page {
+    .page-content {
       flex: 1;
       padding: 10px;
       background-color: #fff;

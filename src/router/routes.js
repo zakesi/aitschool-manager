@@ -4,6 +4,8 @@ import Carousel from "../views/Carousel.vue";
 import Plan from "../views/Plan.vue";
 import Course from "../views/Course.vue";
 import Project from "../views/Project.vue";
+import Roles from "../views/Roles.vue";
+import RolesIndex from "../views/RolesIndex.vue";
 
 const SettingManager = () =>
   import(/* webpackChunkName: "setting" */ "@/views/SettingManager.vue");
@@ -142,6 +144,38 @@ const routes = [
                 meta: {
                   breadcrumb: {
                     title: "编辑"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            path: "/roles",
+            name: "RolesRoot",
+            component: { render: h => h("router-view") },
+            redirect: { name: "Roles" },
+            meta: {
+              nav: {
+                icon: "el-icon-user-solid",
+                title: "角色管理"
+              },
+              breadcrumb: {
+                title: "角色管理"
+              }
+            },
+            children: [
+              {
+                path: "/roles",
+                name: "Roles",
+                component: Roles
+              },
+              {
+                path: "/roles/index/:id",
+                name: "RolesIndex",
+                component: RolesIndex,
+                meta: {
+                  breadcrumb: {
+                    title: "详情页"
                   }
                 }
               }

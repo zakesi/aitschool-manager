@@ -1,6 +1,6 @@
 <template>
-  <div class="carous-page">
-    <div class="page-content">
+  <div class="page-content">
+    <div class="carous-page">
       <el-button type="primary" size="mini" @click="show = true"
         >上传<i class="el-icon-upload el-icon--right"></i
       ></el-button>

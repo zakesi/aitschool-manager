@@ -1,5 +1,5 @@
 <template>
-  <div>SettingManager</div>
+  <div class="page-content"></div>
 </template>
 
 <script>

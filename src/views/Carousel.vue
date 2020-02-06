@@ -7,7 +7,7 @@
       <template>
         <el-table
           :data="carouseArr"
-          style="margin-top:30px; width: 100%"
+          style="margin-top:20px; width: 100%"
           :height="680"
         >
           <el-table-column label="id" prop="id" width="80px;"></el-table-column>

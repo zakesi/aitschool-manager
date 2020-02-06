@@ -5,6 +5,8 @@ const API = {
   qiniuToken: `${PREFIX}/qiniu/token`,
   qiniu_api: "https://upload-z2.qiniup.com",
   role: `${PREFIX}/role`,
-  roleId: id => `${PREFIX}/role/${id}`
+  roleId: id => `${PREFIX}/role/${id}`,
+  permissions: `${PREFIX}/permissions`,
+  permissionsId: id => `${PREFIX}/role/${id}/permissions`
 };
 export default API;

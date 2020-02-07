@@ -26,11 +26,12 @@
       title="创建角色"
       :visible.sync="dialogFormVisible"
       :before-close="delData"
+      width="400px"
     >
       <el-form :model="rolesData" ref="rolesRef">
         <el-form-item
           label="角色名称"
-          label-width="120px"
+          label-width="80px"
           prop="name"
           :rules="[
             { required: true, message: '角色名称不能为空', trigger: 'blur' }
@@ -40,7 +41,7 @@
         </el-form-item>
         <el-form-item
           label="角色描述"
-          label-width="120px"
+          label-width="80px"
           prop="description"
           :rules="[
             { required: true, message: '角色名称不能为空', trigger: 'blur' }

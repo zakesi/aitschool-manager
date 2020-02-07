@@ -26,19 +26,36 @@
 
 <script>
 import Breadcrumb from "@/components/BasicBreadcrumb.vue";
+import storage from "@/global/storage/index.js";
+
 export default {
   data() {
     return {
       userInfo: {}
     };
   },
-  created() {},
+  created() {
+    this.authentication();
+  },
+  watch: {
+    $route: "authentication"
+  },
   methods: {
+    authentication() {
+      let token = storage.getToken();
+      let id = storage.getManagerId();
+      let name = storage.getManagerRoles_id();
+      let roles_id = storage.getManagerName();
+      if (!token || !id || !name || !roles_id)
+        this.$router.push({ path: "/login" });
+    },
     handleCommand(command) {
       const handleName = `handle${command}`;
       this[handleName]();
     },
-    handleLogout() {}
+    handleLogout() {
+      storage.clear();
+    }
   },
   components: {
     Breadcrumb

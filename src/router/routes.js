@@ -6,6 +6,7 @@ import Course from "../views/Course.vue";
 import Project from "../views/Project.vue";
 import Roles from "../views/Roles.vue";
 import RolesIndex from "../views/RolesIndex.vue";
+import login from "../views/login.vue";
 
 const SettingManager = () =>
   import(/* webpackChunkName: "setting" */ "@/views/SettingManager.vue");
@@ -38,6 +39,7 @@ const routes = [
       {
         path: "/carousel",
         name: "Carousel",
+        permission: "carousel-manager",
         component: Carousel,
         meta: {
           nav: {
@@ -184,6 +186,16 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: login,
+    meta: {
+      breadcrumb: {
+        title: "登陆页面"
+      }
+    }
   }
 ];
 

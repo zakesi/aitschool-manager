@@ -7,6 +7,10 @@ const API = {
   role: `${PREFIX}/role`,
   roleId: id => `${PREFIX}/role/${id}`,
   permissions: `${PREFIX}/permissions`,
-  permissionsId: id => `${PREFIX}/role/${id}/permissions`
+  permissionsId: id => `${PREFIX}/role/${id}/permissions`,
+  manager: `${PREFIX}/manager`,
+  managerId: id => `${PREFIX}/manager/${id}`,
+  login: `${PREFIX}/manager/login`,
+  getPermission: id => `${PREFIX}/getPermission/${id}`
 };
 export default API;

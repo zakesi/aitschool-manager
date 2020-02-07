@@ -31,7 +31,7 @@ export default {
 <style type="text/css" lang="less">
 .page-wrapper {
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #fff;
   display: flex;
 }
 

@@ -39,23 +39,33 @@
 <script>
 // import routes from "@/router/routesPermission";
 import routes from "@/router/routes.js";
-
+import storage from "@/global/storage/index.js";
+import serviceManager from "@/global/service/manager.js";
 export default {
   data() {
     return {
       path: this.$route.path,
-      filterRoutes: []
+      filterRoutes: [],
+      PermissionArr: []
     };
   },
   created() {
-    this.getRoutes();
+    this.getPermissions();
   },
   watch: {
     $route(to) {
       this.path = to.path;
+      this.getPermissions();
     }
   },
   methods: {
+    getPermissions() {
+      let ManagerRoles_id = storage.getManagerRoles_id();
+      serviceManager.getPermission(ManagerRoles_id).then(res => {
+        this.PermissionArr = res.permissionArr;
+        this.getRoutes();
+      });
+    },
     getRoutes() {
       this.filterRoutes = this.filterNavigator(routes);
     },
@@ -63,6 +73,12 @@ export default {
       let result = [];
       node.forEach(data => {
         if (data.meta && data.meta.nav) {
+          if (data.permission) {
+            let juede = this.PermissionArr.some(
+              i => data.permission == i.permissions_slug
+            );
+            if (!juede) return;
+          }
           let item = {
             path: data.path,
             name: data.name,

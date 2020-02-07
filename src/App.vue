@@ -11,4 +11,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 </style>

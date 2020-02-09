@@ -69,11 +69,9 @@ export default {
   },
   created() {
     let token = storage.getToken();
-    let id = storage.getManagerId();
-    let name = storage.getManagerRoles_id();
-    let roles_id = storage.getManagerName();
-    if (token && id && name && roles_id)
+    if (token) {
       this.$router.push({ path: "/dashboard" });
+    }
   },
   methods: {
     login() {
@@ -82,9 +80,6 @@ export default {
         if (valid) {
           serviceManager.login(data).then(res => {
             storage.setToken(res.token);
-            storage.setManagerId(res.id);
-            storage.setManagerRoles_id(res.roles_id);
-            storage.setManagerName(res.name);
             this.$router.push({ path: "/dashboard" });
           });
         }

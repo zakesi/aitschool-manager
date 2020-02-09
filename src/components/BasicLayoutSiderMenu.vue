@@ -60,8 +60,8 @@ export default {
   },
   methods: {
     getPermissions() {
-      let ManagerRoles_id = storage.getManagerRoles_id();
-      serviceManager.getPermission(ManagerRoles_id).then(res => {
+      let token = storage.getToken();
+      serviceManager.getPermission({ token }).then(res => {
         this.PermissionArr = res.permissionArr;
         this.getRoutes();
       });

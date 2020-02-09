@@ -20,8 +20,8 @@ const managerService = {
   login: function(params) {
     return axios.post(api.login, params);
   },
-  getPermission: function(id) {
-    return axios.get(api.getPermission(id));
+  getPermission: function(token) {
+    return axios.post(api.getPermission, token);
   }
 };
 export default managerService;

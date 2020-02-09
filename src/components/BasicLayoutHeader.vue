@@ -43,11 +43,9 @@ export default {
   methods: {
     authentication() {
       let token = storage.getToken();
-      let id = storage.getManagerId();
-      let name = storage.getManagerRoles_id();
-      let roles_id = storage.getManagerName();
-      if (!token || !id || !name || !roles_id)
+      if (!token) {
         this.$router.push({ path: "/login" });
+      }
     },
     handleCommand(command) {
       const handleName = `handle${command}`;

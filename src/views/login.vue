@@ -79,7 +79,7 @@ export default {
       this.$refs["passwordFrom"].validate(valid => {
         if (valid) {
           serviceManager.login(data).then(res => {
-            storage.setToken(res.token);
+            storage.setToken(res);
             this.$router.push({ path: "/dashboard" });
           });
         }

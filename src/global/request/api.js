@@ -11,6 +11,10 @@ const API = {
   manager: `${PREFIX}/manager`,
   managerId: id => `${PREFIX}/manager/${id}`,
   login: `${PREFIX}/manager/login`,
-  getPermission: `${PREFIX}/getPermission`
+  getPermission: `${PREFIX}/getPermission`,
+  path: `${PREFIX}/path`,
+  pathId: id => `${PREFIX}/path/${id}`,
+  plan: `${PREFIX}/plan`,
+  planId: id => `${PREFIX}/plan/${id}`
 };
 export default API;

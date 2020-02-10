@@ -2,12 +2,15 @@ import BasicLayout from "@/components/BasicLayout.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Carousel from "../views/Carousel.vue";
 import Plan from "../views/Plan.vue";
+import PlanCreate from "../views/PlanCreate.vue";
+import PlanDetails from "../views/PlanDetails.vue";
+import PathCreate from "../views/PathCreate.vue";
+import PathDetails from "../views/PathDetails.vue";
 import Course from "../views/Course.vue";
 import Project from "../views/Project.vue";
 import Roles from "../views/Roles.vue";
 import RolesIndex from "../views/RolesIndex.vue";
 import login from "../views/login.vue";
-
 const SettingManager = () =>
   import(/* webpackChunkName: "setting" */ "@/views/SettingManager.vue");
 const SettingManagerCreate = () =>
@@ -53,8 +56,8 @@ const routes = [
       },
       {
         path: "/plan",
-        name: "Plan",
-        component: Plan,
+        name: "PlanRoot",
+        component: { render: h => h("router-view") },
         meta: {
           nav: {
             icon: "el-icon-position",
@@ -63,7 +66,54 @@ const routes = [
           breadcrumb: {
             title: "职业计划"
           }
-        }
+        },
+        children: [
+          {
+            path: "/plan",
+            name: "Plan",
+            component: Plan
+          },
+          {
+            path: "/plan/create",
+            name: "planCreate",
+            component: PlanCreate,
+            meta: {
+              breadcrumb: {
+                title: "创建"
+              }
+            }
+          },
+          {
+            path: "/plan/:id/details",
+            name: "PlanDetails",
+            component: PlanDetails,
+            meta: {
+              breadcrumb: {
+                title: "详情"
+              }
+            }
+          },
+          {
+            path: "/path/:id/create",
+            name: "PathCreate",
+            component: PathCreate,
+            meta: {
+              breadcrumb: {
+                title: "路径添加"
+              }
+            }
+          },
+          {
+            path: "/path/:id/details",
+            name: "PathDetails",
+            component: PathDetails,
+            meta: {
+              breadcrumb: {
+                title: "路径详情"
+              }
+            }
+          }
+        ]
       },
       {
         path: "/course",

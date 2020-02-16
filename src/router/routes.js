@@ -2,11 +2,16 @@ import BasicLayout from "@/components/BasicLayout.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Carousel from "../views/Carousel.vue";
 import Plan from "../views/Plan.vue";
+import PlanEdit from "../views/PlanEdit.vue";
 import PlanCreate from "../views/PlanCreate.vue";
 import PlanDetails from "../views/PlanDetails.vue";
 import PathCreate from "../views/PathCreate.vue";
-import PathDetails from "../views/PathDetails.vue";
-import Course from "../views/Course.vue";
+import PathEdit from "../views/PathEdit.vue";
+import Courses from "../views/Courses.vue";
+import CoursesCreate from "../views/CoursesCreate.vue";
+import CoursesEdit from "../views/CoursesEdit.vue";
+import ChaptersDetails from "../views/ChaptersDetails.vue";
+import sectionsDetails from "../views/sectionsDetails.vue";
 import Project from "../views/Project.vue";
 import Roles from "../views/Roles.vue";
 import RolesIndex from "../views/RolesIndex.vue";
@@ -84,41 +89,58 @@ const routes = [
             }
           },
           {
+            path: "/plan/edit/:id",
+            name: "planEdit",
+            component: PlanEdit,
+            meta: {
+              breadcrumb: {
+                title: "创建"
+              }
+            }
+          },
+          {
             path: "/plan/:id/details",
             name: "PlanDetails",
-            component: PlanDetails,
+            component: { render: h => h("router-view") },
             meta: {
               breadcrumb: {
-                title: "详情"
+                title: "路径列表"
               }
-            }
-          },
-          {
-            path: "/path/:id/create",
-            name: "PathCreate",
-            component: PathCreate,
-            meta: {
-              breadcrumb: {
-                title: "路径添加"
+            },
+            children: [
+              {
+                path: "/plan/:id/details",
+                name: "PlanDetails",
+                component: PlanDetails
+              },
+              {
+                path: "/path/:id/create",
+                name: "PathCreate",
+                component: PathCreate,
+                meta: {
+                  breadcrumb: {
+                    title: "路径添加"
+                  }
+                }
+              },
+              {
+                path: "/path/:id/edit",
+                name: "PathEdit",
+                component: PathEdit,
+                meta: {
+                  breadcrumb: {
+                    title: "路径编辑"
+                  }
+                }
               }
-            }
-          },
-          {
-            path: "/path/:id/details",
-            name: "PathDetails",
-            component: PathDetails,
-            meta: {
-              breadcrumb: {
-                title: "路径详情"
-              }
-            }
+            ]
           }
         ]
       },
       {
-        path: "/course",
-        name: "Course",
-        component: Course,
+        path: "/courses",
+        name: "Courses",
+        component: { render: h => h("router-view") },
         meta: {
           nav: {
             icon: "el-icon-collection",
@@ -127,7 +149,61 @@ const routes = [
           breadcrumb: {
             title: "专业课程"
           }
-        }
+        },
+        children: [
+          {
+            path: "/courses",
+            name: "Courses",
+            component: Courses
+          },
+          {
+            path: "/courses/create",
+            name: "Courses",
+            component: CoursesCreate,
+            meta: {
+              breadcrumb: {
+                title: "创建"
+              }
+            }
+          },
+          {
+            path: "/courses/edit/:id",
+            name: "Courses",
+            component: CoursesEdit,
+            meta: {
+              breadcrumb: {
+                title: "编辑"
+              }
+            }
+          },
+          {
+            path: "/courses/chapters/details/:id",
+            name: "Chapters",
+            component: { render: h => h("router-view") },
+            meta: {
+              breadcrumb: {
+                title: "章节详情"
+              }
+            },
+            children: [
+              {
+                path: "/courses/chapters/details/:id",
+                name: "Chapters",
+                component: ChaptersDetails
+              },
+              {
+                path: "/courses/chapters/sections/:id",
+                name: "Sections",
+                component: sectionsDetails,
+                meta: {
+                  breadcrumb: {
+                    title: "节详情"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       },
       {
         path: "/project",

@@ -20,7 +20,6 @@ axios.defaults.timeout = 20000;
 axios.interceptors.response.use(
   res => {
     // 兼容包了一层 { code, data } 的情况
-    console.log(res);
     switch (true) {
       case res.data && res.data.error_code === 0:
         if (res.data.message) Message.success(res.data.message);

@@ -15,6 +15,14 @@ const API = {
   path: `${PREFIX}/path`,
   pathId: id => `${PREFIX}/path/${id}`,
   plan: `${PREFIX}/plan`,
-  planId: id => `${PREFIX}/plan/${id}`
+  planId: id => `${PREFIX}/plan/${id}`,
+  courses: `${PREFIX}/course`,
+  coursesId: id => `${PREFIX}/course/${id}`,
+  chapters: `${PREFIX}/chapters`,
+  chaptersId: id => `${PREFIX}/chapters/${id}`,
+  sections: `${PREFIX}/sections`,
+  sectionsId: id => `${PREFIX}/sections/${id}`,
+  pathCourse: `${PREFIX}/path/course/sort`,
+  pathCourseStore: `${PREFIX}/path/course/store`
 };
 export default API;

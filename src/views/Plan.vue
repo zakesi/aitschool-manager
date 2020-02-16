@@ -11,6 +11,10 @@
       <el-table-column label="名称" prop="name"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <router-link :to="`/plan/edit/${scope.row.id}`">
+            <el-button type="text">编辑</el-button>
+          </router-link>
+          <el-divider direction="vertical"></el-divider>
           <router-link :to="`/plan/${scope.row.id}/details`">
             <el-button type="text">详情</el-button>
           </router-link>

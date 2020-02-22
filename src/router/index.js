@@ -1,13 +1,25 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "./routes.js";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 Vue.use(VueRouter);
-
-const router = new VueRouter({
+const appRouter = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
 });
 
-export default router;
+// eslint-disable-next-line
+appRouter.beforeEach(async (to, from, next) => {
+  NProgress.start();
+  next();
+});
+
+// eslint-disable-next-line
+appRouter.afterEach((to, from) => {
+  NProgress.done();
+});
+
+export default appRouter;

@@ -13,8 +13,8 @@ import CoursesEdit from "../views/CoursesEdit.vue";
 import ChaptersDetails from "../views/ChaptersDetails.vue";
 import sectionsDetails from "../views/sectionsDetails.vue";
 import Project from "../views/Project.vue";
-import Roles from "../views/Roles.vue";
-import RolesIndex from "../views/RolesIndex.vue";
+import SettingRoles from "../views/SettingRoles.vue";
+import SettingRolesItem from "../views/SettingRolesItem.vue";
 import login from "../views/login.vue";
 const SettingManager = () =>
   import(/* webpackChunkName: "setting" */ "@/views/SettingManager.vue");
@@ -158,7 +158,7 @@ const routes = [
           },
           {
             path: "/courses/create",
-            name: "Courses",
+            name: "CourseCreate",
             component: CoursesCreate,
             meta: {
               breadcrumb: {
@@ -168,7 +168,7 @@ const routes = [
           },
           {
             path: "/courses/edit/:id",
-            name: "Courses",
+            name: "CourseEdit",
             component: CoursesEdit,
             meta: {
               breadcrumb: {
@@ -236,7 +236,7 @@ const routes = [
           {
             path: "/setting/manager",
             name: "SettingManagerRoot",
-            permission: "setting-manager",
+            // permission: "setting-manager",
             component: { render: h => h("router-view") },
             redirect: { name: "SettingManager" },
             meta: {
@@ -278,8 +278,8 @@ const routes = [
             ]
           },
           {
-            path: "/roles",
-            name: "RolesRoot",
+            path: "/setting/roles",
+            name: "SettingRolesRoot",
             component: { render: h => h("router-view") },
             redirect: { name: "Roles" },
             meta: {
@@ -293,17 +293,17 @@ const routes = [
             },
             children: [
               {
-                path: "/roles",
-                name: "Roles",
-                component: Roles
+                path: "/setting/roles",
+                name: "SettingRoles",
+                component: SettingRoles
               },
               {
-                path: "/roles/index/:id",
-                name: "RolesIndex",
-                component: RolesIndex,
+                path: "/setting/roles/:id",
+                name: "SettingRolesItem",
+                component: SettingRolesItem,
                 meta: {
                   breadcrumb: {
-                    title: "详情页"
+                    title: "详情"
                   }
                 }
               }

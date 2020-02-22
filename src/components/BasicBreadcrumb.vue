@@ -3,13 +3,14 @@
     <el-breadcrumb class="breadcrumb-list" v-if="breadcrumbValue.length">
       <template v-for="item in breadcrumbValue">
         <el-breadcrumb-item
+          class="breadcrumb-item"
           v-if="item.to"
           :replace="true"
           :key="item.name"
           :to="item.to"
           >{{ item.name }}</el-breadcrumb-item
         >
-        <el-breadcrumb-item v-else :key="item.name">{{
+        <el-breadcrumb-item v-else :key="item.name" class="breadcrumb-item">{{
           item.name
         }}</el-breadcrumb-item>
       </template>
@@ -50,7 +51,7 @@ export default {
 <style lang="less">
 .breadcrumb-section {
   background-color: #fff;
-  padding: 16px 32px;
+  padding: 16px;
   padding-bottom: 0;
   overflow: hidden;
   flex: none;
@@ -58,6 +59,9 @@ export default {
   .breadcrumb-title,
   .breadcrumb-description {
     margin-bottom: 16px;
+  }
+  .breadcrumb-item {
+    font-size: 16px;
   }
 }
 </style>

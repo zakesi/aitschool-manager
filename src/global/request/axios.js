@@ -27,14 +27,12 @@ axios.interceptors.response.use(
       case res.data && res.data.error_code === 1:
         if (res.data && res.data.message) Message.error(res.data.message);
         else Message.error("服务器错误");
-        // return res;
         return Promise.reject(res);
       default:
         return res.data;
     }
   },
   error => {
-    // handleErrorRequest(error);
     Message.error("服务器错误");
     return Promise.reject(error);
   }

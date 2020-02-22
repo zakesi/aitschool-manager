@@ -1,22 +1,18 @@
 <template>
   <div class="page-content">
-    <div class="carous-page">
-      <el-button type="primary" size="mini" @click="show = true"
-        >上传<i class="el-icon-upload el-icon--right"></i
+    <div class="carousel-page">
+      <el-button size="medium" @click="show = true"
+        >创建轮播图<i class="el-icon-upload el-icon--right"></i
       ></el-button>
       <template>
-        <el-table
-          :data="carouseArr"
-          style="margin-top:20px; width: 100%"
-          :height="680"
-        >
+        <el-table class="mt-20" :data="carouseArr">
           <el-table-column label="id" prop="id" width="80px;"></el-table-column>
           <el-table-column label="图片" width="80px;">
             <template slot-scope="scope">
               <el-image
                 :src="scope.row.image_url"
                 style="width: 30px; height: 30px"
-                fit="fill"
+                fit="cover"
                 :preview-src-list="[scope.row.image_url]"
               >
                 <div slot="error" class="image-slot">
@@ -53,7 +49,7 @@
           </el-table-column>
           <el-table-column label="创建时间" prop="created_at">
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column label="操作" align="right">
             <template slot-scope="scope">
               <el-button type="text" @click="handleEdit(scope.row)"
                 >编辑</el-button

@@ -30,6 +30,7 @@ export default {
   transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
+  flex: none;
 
   .sider-menu-header {
     flex: none;
@@ -46,7 +47,7 @@ export default {
   position: relative;
   height: 64px;
   background-color: #fff;
-  box-shadow: 1px 1px 0 0 #e8e8e8;
+  box-shadow: 0 2px 8px #f0f1f2;
   z-index: 1;
   padding-left: 14px;
   display: flex;

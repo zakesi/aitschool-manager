@@ -1,54 +1,53 @@
 <template>
-  <el-form
-    label-position="left"
-    label-width="50px"
-    :model="planData"
-    ref="planData"
-    :rules="planRef"
-    style="width:300px;"
-  >
-    <el-form-item label="名称">
-      <el-input v-model="planData.name"></el-input>
-    </el-form-item>
-    <el-form-item label="描述">
-      <el-input
-        type="textarea"
-        resize="none"
-        rows="3"
-        v-model="planData.description"
-      ></el-input>
-    </el-form-item>
-    <el-form-item label="排序">
-      <el-input-number
-        v-model="planData.sort"
-        :min="1"
-        :max="10"
-        label="排序"
-      ></el-input-number>
-    </el-form-item>
-    <el-form-item label="图片">
-      <el-upload
-        action=""
-        class="image-uploader"
-        :show-file-list="false"
-        :before-upload="getImage"
-        :http-request="setImage"
-      >
-        <img
-          v-if="planData.image_url"
-          :src="planData.image_url"
-          class="image"
-        />
-        <i v-else class="el-icon-plus image-uploader-icon"></i>
-      </el-upload>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" size="mini" @click="editPlan">
-        编辑
-        <i class="el-icon-upload el-icon--right"></i>
-      </el-button>
-    </el-form-item>
-  </el-form>
+  <div class="page-content">
+    <el-form
+      label-position="left"
+      label-width="80px"
+      :model="planData"
+      ref="planData"
+      :rules="planRef"
+    >
+      <el-form-item label="名称" prop="name">
+        <el-input v-model="planData.name"></el-input>
+      </el-form-item>
+      <el-form-item label="描述" prop="description">
+        <el-input
+          type="textarea"
+          resize="none"
+          rows="3"
+          v-model="planData.description"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="排序" prop="sort">
+        <el-input-number
+          v-model="planData.sort"
+          :min="1"
+          :max="10"
+          label="排序"
+        ></el-input-number>
+      </el-form-item>
+      <el-form-item label="图片" prop="image_url">
+        <el-upload
+          action=""
+          class="image-uploader"
+          :show-file-list="false"
+          :before-upload="getImage"
+          :http-request="setImage"
+        >
+          <el-image
+            v-if="planData.image_url"
+            :src="planData.image_url"
+            class="image"
+            fit="cover"
+          />
+          <i v-else class="el-icon-plus image-uploader-icon"></i>
+        </el-upload>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="editPlan">编辑</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 <script>
 import qiniuAxios from "@/global/service/qiniu.js";

@@ -3,7 +3,6 @@
     <el-form
       label-position="left"
       label-width="80px"
-      style="max-width:500px;"
       :model="managerData"
       ref="managerData"
     >
@@ -92,7 +91,7 @@ export default {
       this.$refs["managerData"].validate(valid => {
         if (valid) {
           serviceManager.update(id, data).then(() => {
-            this.$router.push({ path: "/setting/manager" });
+            this.$router.push({ name: "SettingManager" });
           });
         }
       });

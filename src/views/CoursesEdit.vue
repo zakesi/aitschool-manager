@@ -2,19 +2,18 @@
   <div class="page-content">
     <el-form
       label-position="left"
-      label-width="60px"
+      label-width="80px"
       :model="coursesData"
       ref="coursesData"
       :rules="coursesRef"
-      style="width:400px;"
     >
-      <el-form-item label="标题" style="max-width:280px;">
+      <el-form-item label="标题" prop="name">
         <el-input v-model="coursesData.name"></el-input>
       </el-form-item>
-      <el-form-item label="副标题" style="max-width:280px;">
+      <el-form-item label="副标题" prop="short_name">
         <el-input v-model="coursesData.short_name"></el-input>
       </el-form-item>
-      <el-form-item label="提示">
+      <el-form-item label="提示" prop="tips">
         <el-input
           type="textarea"
           resize="none"
@@ -22,7 +21,7 @@
           v-model="coursesData.tips"
         ></el-input>
       </el-form-item>
-      <el-form-item label="描述">
+      <el-form-item label="描述" prop="description">
         <el-input
           type="textarea"
           resize="none"
@@ -30,7 +29,7 @@
           v-model="coursesData.description"
         ></el-input>
       </el-form-item>
-      <el-form-item label="图片">
+      <el-form-item label="图片" prop="image_url">
         <el-upload
           action=""
           class="image-uploader"
@@ -47,7 +46,7 @@
         </el-upload>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="mini" @click="editCourses">
+        <el-button type="primary" @click="editCourses">
           编辑
         </el-button>
       </el-form-item>

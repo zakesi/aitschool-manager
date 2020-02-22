@@ -1,15 +1,23 @@
 <template>
   <div class="page-content">
-    <el-button type="primary" @click="dialogFormVisible = true"
-      >添加<i class="el-icon-upload el-icon--right"></i
-    ></el-button>
-    <el-table :data="roleArr" style="width: 100%">
+    <el-button type="medium" @click="dialogFormVisible = true"
+      >添加角色
+      <i class="el-icon-upload el-icon--right"></i>
+    </el-button>
+    <el-table class="mt-20" :data="roleArr">
       <el-table-column prop="id" label="ID" width="60"> </el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
+      <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
       <el-table-column prop="description" label="描述"> </el-table-column>
-      <el-table-column label="操作" fixed="right" width="180">
+      <el-table-column label="操作" align="right">
         <template slot-scope="scope">
-          <router-link :to="'/roles/index/' + scope.row.id">
+          <router-link
+            :to="{
+              name: 'SettingRolesItem',
+              params: {
+                id: scope.row.id
+              }
+            }"
+          >
             <el-button type="text">编辑</el-button>
           </router-link>
           <el-divider direction="vertical"></el-divider>
@@ -26,12 +34,16 @@
       title="创建角色"
       :visible.sync="dialogFormVisible"
       :before-close="delData"
-      width="400px"
+      width="600px"
     >
-      <el-form :model="rolesData" ref="rolesRef">
+      <el-form
+        :model="rolesData"
+        ref="rolesRef"
+        label-width="100px"
+        label-position="left"
+      >
         <el-form-item
-          label="角色名称"
-          label-width="80px"
+          label="角色名称："
           prop="name"
           :rules="[
             { required: true, message: '角色名称不能为空', trigger: 'blur' }
@@ -40,8 +52,7 @@
           <el-input v-model="rolesData.name"></el-input>
         </el-form-item>
         <el-form-item
-          label="角色描述"
-          label-width="80px"
+          label="角色描述："
           prop="description"
           :rules="[
             { required: true, message: '角色名称不能为空', trigger: 'blur' }

@@ -1,14 +1,13 @@
 <template>
-  <div class="page-content" style="padding: 30px;">
+  <div class="page-content">
     <el-form
       label-position="left"
-      style="max-width:500px;"
-      label-width="140px"
+      label-width="120px"
       ref="rolesData"
       :model="rolesData"
     >
       <el-form-item
-        label="名称"
+        label="名称："
         prop="name"
         :rules="[
           { required: true, message: '请输入角色名称', trigger: 'blur' }
@@ -18,7 +17,7 @@
         <span v-show="!editShow">{{ rolesData.name }}</span>
       </el-form-item>
       <el-form-item
-        label="描述"
+        label="描述："
         prop="description"
         :rules="[
           { required: true, message: '请输入角色描述', trigger: 'blur' }
@@ -51,11 +50,17 @@
           >
         </el-checkbox-group>
       </el-form-item>
-      <el-form-item v-show="!editShow" label="编辑">
-        <el-switch v-model="editShow"> </el-switch>
-      </el-form-item>
-      <el-form-item v-show="editShow">
-        <el-button type="primary" @click="editData">保存修改</el-button>
+      <el-form-item>
+        <el-button
+          v-show="!editShow"
+          type="primary"
+          plain
+          @click="editShow = true"
+          >编辑</el-button
+        >
+        <el-button v-show="editShow" type="primary" @click="editData"
+          >保存修改</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
@@ -98,7 +103,11 @@ export default {
       let id = this.$route.params.id;
       let rolesData = this.rolesData;
       serviceRole.update(id, rolesData).then(() => {
-        this.editPermissions();
+        if (this.chooseList.length) {
+          this.editPermissions();
+        } else {
+          this.editShow = false;
+        }
       });
     },
     editPermissions() {
@@ -111,16 +120,4 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-.page-content {
-  padding: 30px;
-}
-.permissions-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .permissions-header-title {
-    font-weight: 600;
-  }
-}
-</style>
+<style lang="less" scoped></style>

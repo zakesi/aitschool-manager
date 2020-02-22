@@ -39,6 +39,9 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
+  .page-header {
+    flex: none;
+  }
   .page-body {
     flex: 1;
     padding: 20px;

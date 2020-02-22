@@ -1,17 +1,22 @@
 <template>
   <div class="page-content">
-    <router-link to="/courses/create">
-      <el-button type="primary" size="mini">
-        创建
-      </el-button>
+    <router-link :to="{ name: 'CourseCreate' }">
+      <el-button size="medium">创建课程</el-button>
     </router-link>
-    <el-table :data="coursesArr" stripe style="width: 100%">
-      <el-table-column prop="id" label="ID"> </el-table-column>
+    <el-table class="mt-20" :data="coursesArr">
+      <el-table-column prop="id" label="ID" width="80px"> </el-table-column>
       <el-table-column prop="name" label="名称"> </el-table-column>
       <el-table-column prop="short_name" label="副标题"> </el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="180px" align="right">
         <template slot-scope="scope">
-          <router-link :to="`/courses/edit/${scope.row.id}`">
+          <router-link
+            :to="{
+              name: 'CourseEdit',
+              params: {
+                id: scope.row.id
+              }
+            }"
+          >
             <el-button type="text" size="small">
               编辑
             </el-button>
@@ -52,9 +57,10 @@ export default {
     delCourses(index, row) {
       this.$confirm("确认删除吗？")
         .then(() => {
-          serviceCourses.destroy(row.id).then(() => {
-            this.coursesArr.splice(index, 1);
-          });
+          return serviceCourses.destroy(row.id);
+        })
+        .then(() => {
+          this.coursesArr.splice(index, 1);
         })
         .catch(() => {});
     }

@@ -1,9 +1,9 @@
 <template>
   <div class="page-content">
     <div class="carousel-page">
-      <el-button size="medium" @click="show = true"
-        >创建轮播图<i class="el-icon-upload el-icon--right"></i
-      ></el-button>
+      <el-button size="medium" type="primary" plain @click="show = true"
+        >创建轮播图</el-button
+      >
       <template>
         <el-table class="mt-20" :data="carouseArr">
           <el-table-column label="id" prop="id" width="80px;"></el-table-column>

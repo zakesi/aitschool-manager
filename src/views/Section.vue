@@ -36,9 +36,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" size="mini" @click="editSection"
-          >保存</el-button
-        >
+        <el-button type="primary" @click="editSection">保存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -110,8 +108,8 @@ export default {
     },
     editSection() {
       let data = this.sectionData;
-      serviceSections.update(this.$route.params.id, data).then(res => {
-        this.$router.push({ name: "Chapters", params: { id: res.course_id } });
+      serviceSections.update(this.$route.params.id, data).then(() => {
+        // this.$router.push({ name: "Chapters", params: { id: res.course_id } });
       });
     }
   }

@@ -1,9 +1,13 @@
 <template>
   <div class="page-content">
     <router-link :to="{ name: 'SettingManagerCreate' }">
-      <el-button size="medium" @click="dialogFormVisible = true"
-        >添加管理员<i class="el-icon-upload el-icon--right"></i
-      ></el-button>
+      <el-button
+        size="medium"
+        type="primary"
+        plain
+        @click="dialogFormVisible = true"
+        >添加管理员</el-button
+      >
     </router-link>
     <el-table class="mt-20" :data="managerArr">
       <el-table-column prop="id" label="ID"> </el-table-column>

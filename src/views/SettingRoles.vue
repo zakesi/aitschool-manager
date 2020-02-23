@@ -1,8 +1,11 @@
 <template>
   <div class="page-content">
-    <el-button type="medium" @click="dialogFormVisible = true"
+    <el-button
+      size="medium"
+      type="primary"
+      plain
+      @click="dialogFormVisible = true"
       >添加角色
-      <i class="el-icon-upload el-icon--right"></i>
     </el-button>
     <el-table class="mt-20" :data="roleArr">
       <el-table-column prop="id" label="ID" width="60"> </el-table-column>

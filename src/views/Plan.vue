@@ -1,7 +1,7 @@
 <template>
   <div class="page-content">
     <router-link to="/plan/create">
-      <el-button size="medium">创建职业计划</el-button>
+      <el-button size="medium" type="primary" plain>创建职业计划</el-button>
     </router-link>
     <el-table class="mt-20" :data="planData">
       <el-table-column label="id" prop="id" width="80px;"></el-table-column>
@@ -9,18 +9,29 @@
       <el-table-column label="名称" prop="name"></el-table-column>
       <el-table-column label="操作" align="right">
         <template slot-scope="scope">
-          <router-link :to="`/plan/${scope.row.id}/details`">
+          <router-link
+            :to="{
+              name: 'PlanItem',
+              params: {
+                id: scope.row.id
+              }
+            }"
+          >
             <el-button type="text">详情</el-button>
           </router-link>
           <el-divider direction="vertical"></el-divider>
-          <router-link :to="`/plan/edit/${scope.row.id}`">
+          <router-link
+            :to="{
+              name: 'PlanEdit',
+              params: {
+                id: scope.row.id
+              }
+            }"
+          >
             <el-button type="text">编辑</el-button>
           </router-link>
           <el-divider direction="vertical"></el-divider>
-          <el-button
-            type="text"
-            style="color:#f56c6c;"
-            @click="delPlan(scope.$index, scope.row)"
+          <el-button type="text" @click="delPlan(scope.$index, scope.row)"
             >删除</el-button
           >
         </template>

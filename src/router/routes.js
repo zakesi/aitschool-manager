@@ -4,14 +4,14 @@ import Carousel from "../views/Carousel.vue";
 import Plan from "../views/Plan.vue";
 import PlanEdit from "../views/PlanEdit.vue";
 import PlanCreate from "../views/PlanCreate.vue";
-import PlanDetails from "../views/PlanDetails.vue";
+import PlanItem from "../views/PlanItem.vue";
 import PathCreate from "../views/PathCreate.vue";
 import PathEdit from "../views/PathEdit.vue";
 import Courses from "../views/Courses.vue";
 import CoursesCreate from "../views/CoursesCreate.vue";
 import CoursesEdit from "../views/CoursesEdit.vue";
-import ChaptersDetails from "../views/ChaptersDetails.vue";
-import sectionsDetails from "../views/sectionsDetails.vue";
+import CourseItem from "../views/CourseItem.vue";
+import Section from "../views/Section.vue";
 import Project from "../views/Project.vue";
 import SettingRoles from "../views/SettingRoles.vue";
 import SettingRolesItem from "../views/SettingRolesItem.vue";
@@ -90,7 +90,7 @@ const routes = [
           },
           {
             path: "/plan/edit/:id",
-            name: "planEdit",
+            name: "PlanEdit",
             component: PlanEdit,
             meta: {
               breadcrumb: {
@@ -99,8 +99,8 @@ const routes = [
             }
           },
           {
-            path: "/plan/:id/details",
-            name: "PlanDetails",
+            path: "/plan/:id",
+            name: "PlanItemRoot",
             component: { render: h => h("router-view") },
             meta: {
               breadcrumb: {
@@ -109,9 +109,9 @@ const routes = [
             },
             children: [
               {
-                path: "/plan/:id/details",
-                name: "PlanDetails",
-                component: PlanDetails
+                path: "/plan/:id",
+                name: "PlanItem",
+                component: PlanItem
               },
               {
                 path: "/path/:id/create",
@@ -139,7 +139,7 @@ const routes = [
       },
       {
         path: "/courses",
-        name: "Courses",
+        name: "CoursesRoot",
         component: { render: h => h("router-view") },
         meta: {
           nav: {
@@ -167,7 +167,7 @@ const routes = [
             }
           },
           {
-            path: "/courses/edit/:id",
+            path: "/course/:id/edit",
             name: "CourseEdit",
             component: CoursesEdit,
             meta: {
@@ -177,8 +177,8 @@ const routes = [
             }
           },
           {
-            path: "/courses/chapters/details/:id",
-            name: "Chapters",
+            path: "/course/:id",
+            name: "CourseItemRoot",
             component: { render: h => h("router-view") },
             meta: {
               breadcrumb: {
@@ -187,14 +187,14 @@ const routes = [
             },
             children: [
               {
-                path: "/courses/chapters/details/:id",
-                name: "Chapters",
-                component: ChaptersDetails
+                path: "/course/:id",
+                name: "CourseItem",
+                component: CourseItem
               },
               {
-                path: "/courses/chapters/sections/:id",
-                name: "Sections",
-                component: sectionsDetails,
+                path: "/course/section/:id",
+                name: "Section",
+                component: Section,
                 meta: {
                   breadcrumb: {
                     title: "节详情"

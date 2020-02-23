@@ -1,29 +1,17 @@
 <template>
   <div class="page-content">
-    <el-button
-      type="primary"
-      size="mini"
-      @click="
-        dialogVisible = true;
-        rditChapter = 1;
-      "
-    >
-      创建
+    <el-button type="primary" size="medium" plain @click="addChapter">
+      创建章
     </el-button>
-    <div class="chapters-container">
+    <div class="chapters-container mt-20">
       <div
         class="chapters-list"
         v-for="(item, index) in ChapterArr"
         :key="item.id"
       >
-        <div class="chapters-list_title">
-          <div>
-            <p class="list_title">
-              {{ item.name }}
-            </p>
-            <span>{{ item.description }}</span>
-          </div>
-          <div>
+        <div class="chapters-list-title">
+          <div class="chapters-list-name">{{ item.name }}</div>
+          <div class="chapters-list-ctrl">
             <el-button type="text" @click="addSectionShow(item)"
               >添加节</el-button
             >
@@ -42,10 +30,17 @@
           >
             <transition-group>
               <div v-for="(data, indexs) in item.sectionArr" :key="data.id">
-                <div class="section-list_item">
-                  <p class="section-list_title">{{ data.name }}</p>
+                <div class="section-item">
+                  <p class="section-item-title">{{ data.name }}</p>
                   <div>
-                    <router-link :to="`/courses/chapters/sections/${data.id}`">
+                    <router-link
+                      :to="{
+                        name: 'Section',
+                        params: {
+                          id: data.id
+                        }
+                      }"
+                    >
                       <el-button type="text">编辑</el-button>
                     </router-link>
                     <el-divider direction="vertical"></el-divider>
@@ -87,7 +82,7 @@
       </span>
     </el-dialog>
     <el-dialog
-      :title="rditChapter === 1 ? '添加章' : '编辑章'"
+      :title="editChapter === 1 ? '添加章' : '编辑章'"
       :visible.sync="dialogVisible"
       width="46%"
     >
@@ -156,7 +151,7 @@ export default {
         name: ""
       },
       sectionsShow: false,
-      rditChapter: 1,
+      editChapter: 1,
       showChapterId: null,
       dialogVisible: false,
       ChapterData: {
@@ -183,12 +178,16 @@ export default {
         this.getData();
       });
     },
+    addChapter() {
+      this.dialogVisible = true;
+      this.editChapter = 1;
+    },
     addSectionShow(item) {
       this.ChapterId = item.id;
       this.sectionsShow = true;
     },
     getData() {
-      let id = this.$route.params.id;
+      const id = this.$route.params.id;
       serviceChapters.index(id).then(res => {
         this.ChapterArr = res.ChapterArr;
       });
@@ -198,7 +197,7 @@ export default {
         if (valid) {
           let data = this.ChapterData;
           data.course_id = this.$route.params.id;
-          if (this.rditChapter == 1) {
+          if (this.editChapter == 1) {
             serviceChapters.store(data).then(() => {
               this.ChapterData = {
                 name: "",
@@ -207,7 +206,7 @@ export default {
               };
               this.dialogVisible = false;
             });
-          } else if (this.rditChapter == 2) {
+          } else if (this.editChapter == 2) {
             serviceChapters.update(this.showChapterId, data).then(() => {
               this.ChapterData = {
                 name: "",
@@ -221,7 +220,7 @@ export default {
       });
     },
     editChapters(item) {
-      this.rditChapter = 2;
+      this.editChapter = 2;
       this.ChapterData = {
         name: item.name,
         description: item.description,
@@ -258,57 +257,37 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.chapters-container {
-  margin-top: 20px;
-  .chapters-list {
-    .chapters-list_title {
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      padding: 5px;
-      margin-bottom: 10px;
-      justify-content: space-between;
-      div {
-        display: flex;
-        align-items: center;
-      }
-      .list_title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 160px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 16px;
-      }
-      span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 100px;
-        font-size: 12px;
-        color: #999;
-      }
+.chapters-list {
+  .chapters-list-title {
+    padding: 0 15px;
+    margin-bottom: 10px;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .chapters-list-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 160px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 16px;
     }
-    .section-list {
-      padding: 5px 0 10px 20px;
-      .section-list_item {
-        height: 40px;
-        border-radius: 5px;
-        padding: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .section-list_title {
-          font-size: 14px;
-          line-height: 14px;
-        }
+  }
+  .section-list {
+    padding: 5px 0 10px 20px;
+    .section-item {
+      height: 40px;
+      border-radius: 5px;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .section-item-title {
+        font-size: 14px;
+        line-height: 14px;
       }
     }
   }

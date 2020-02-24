@@ -13,6 +13,12 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="上传视频">
+        <a
+          v-if="sectionData.video_url"
+          :href="sectionData.video_url"
+          target="_blank"
+          >查看视频: {{ sectionData.video_url }}</a
+        >
         <el-upload
           action=""
           class="image-uploader"
@@ -20,13 +26,11 @@
           :before-upload="getVideo"
           :http-request="setVideo"
         >
-          <video
-            v-if="sectionData.video_url"
-            :src="sectionData.video_url"
-            controls
-            class="image"
-          />
-          <i v-else class="el-icon-plus image-uploader-icon"></i>
+          <el-button size="small" type="primary">
+            {{
+              sectionData.video_url ? "重新上传视频" : "点击上传视频"
+            }}</el-button
+          >
         </el-upload>
       </el-form-item>
       <el-form-item label="内容">
